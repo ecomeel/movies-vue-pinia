@@ -1,0 +1,11 @@
+@import "scss-reset/reset";
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap");
+
+body, html {
+  background-color: #f9f9f9;
+  font-family: "Roboto Condensed", sans-serif;
+}
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+}
