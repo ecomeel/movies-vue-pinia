@@ -2,6 +2,9 @@
 import { useMovieStore } from "./stores/MovieStore.js";
 import Movie from "./components/Movie.vue";
 const movieStore = useMovieStore();
+const setTab = (id) => {
+  movieStore.setActiveTab(id)
+}
 </script>
 <template>
   <div class="container">
@@ -10,13 +13,21 @@ const movieStore = useMovieStore();
       <h1 class="header__title">Movies List</h1>
     </header>
     <div class="tabs">
-      <button :class="['btn', { btn_green: movieStore.activeTab === 1 }]">
+      <button @click="setTab(1)" :class="['btn', { btn_green: movieStore.activeTab === 1 }]">
         Favorite
       </button>
-      <button :class="['btn', {btn_green: movieStore.activeTab === 2}]">Search</button>
+      <button @click="setTab(2)" :class="['btn', { btn_green: movieStore.activeTab === 2 }]">
+        Search
+      </button>
     </div>
     <div class="movies" v-if="movieStore.activeTab === 1">
-      <h3>All movies</h3>
+      <h2>Watched movies - {{ movieStore.watchedMovies.length }}</h2>
+      <Movie
+        v-for="movie of movieStore.watchedMovies"
+        :key="movie.id"
+        :movie="movie"
+      />
+      <h2>All movies - {{ movieStore.totalCountMovies }}</h2>
       <Movie
         v-for="movie of movieStore.movies"
         :key="movie.id"
@@ -63,5 +74,11 @@ const movieStore = useMovieStore();
   display: flex;
   justify-content: center;
   margin-bottom: 30px;
+}
+.movies {
+  h2 {
+    font-size: 25px;
+    font-weight: 500;
+  }
 }
 </style>
