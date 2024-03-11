@@ -19,6 +19,7 @@ export const useMovieStore = defineStore('movieStore', {
         release_date: '20022-03-01',
         isWatched: true 
       }
-    ]
+    ],
+    activeTab: 1
   })
 })
